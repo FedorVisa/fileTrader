@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">
+<!--      <img src="/home/kotozavr/IdeaProjects/filetrader/src/main/resources/mc.png" >-->
+      <svg xmlns="http://www.w3.org/2000/svg" width="30" height="24" fill="currentColor" class="d-inline-block align-text-top bi bi-box-seam-fill" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M15.528 2.973a.75.75 0 0 1 .472.696v8.662a.75.75 0 0 1-.472.696l-7.25 2.9a.75.75 0 0 1-.557 0l-7.25-2.9A.75.75 0 0 1 0 12.331V3.669a.75.75 0 0 1 .471-.696L7.443.184l.01-.003.268-.108a.75.75 0 0 1 .558 0l.269.108.01.003 6.97 2.789ZM10.404 2 4.25 4.461 1.846 3.5 1 3.839v.4l6.5 2.6v7.922l.5.2.5-.2V6.84l6.5-2.6v-.4l-.846-.339L8 5.961 5.596 5l6.154-2.461L10.404 2Z"/>
+      </svg>
+      Micromashinki
+    </a>
+  </div>
+</nav>
+
+<div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
+  <div class="col-md-5 p-lg-5 mx-auto my-5">
+    <h1 class="display-4 font-weight-normal">FileTrader by Micromashinki</h1>
+    <p class="lead font-weight-normal">Делитесь файлами между устройствами в один клик.</p>
+    <div>
+      <form th:action="@{/login}" method="post">
+        <input type="submit" value="Sign In"/>
+      </form>
+    </div>
+  </div>
+  <div class="product-device shadow-sm d-none d-md-block"></div>
+  <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+<footer class="pt-5 my-5 text-muted">
+  <center>
+    Created by</br>
+    <img src="https://psv4.userapi.com/c237331/u153670560/docs/d7/3dc21850b722/shskschfyrshtlsh1.png?extra=4BW2sDWDdTesqwhxWK54Y-AMfEsrQeDB-Zy9jT_tevHLR4UXed6LJAxsMZV9QfKUj1jAT1CwM0H9Q9AtY3OC9dCdhT3S-aNbMsgG0cn0K90sZ1QNT4tczxCZDgGNiQXQyc1-g2Y3kpp9zVdHeXXJ7UoN" height="70px"> </br>
+    © 2022
+  </center>
+</footer>
+</body>
+</html>

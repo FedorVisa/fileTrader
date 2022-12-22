@@ -1,0 +1,211 @@
+package com.example.utility;
+
+import java.util.HashMap;
+
+public class ImageMimeTypeUtil {
+    private static HashMap<String, String> mimeTypeMapping;
+
+    static {
+        mimeTypeMapping = new HashMap<String, String>(200) {
+            private void putPair(String key, String value) {
+                if (put(key, value) != null) {
+                    throw new IllegalArgumentException("Duplicated extension: " + key);
+                }
+            }
+            {
+                putPair("application/bmp", "bmp");
+                putPair("application/cdr", "cdr");
+                putPair("application/coreldraw", "cdr");
+                putPair("application/excel", "xl");
+                putPair("application/gpg-keys", "gpg");
+                putPair("application/java-archive", "jar");
+                putPair("application/json", "json");
+                putPair("application/mac-binary", "bin");
+                putPair("application/mac-binhex", "hqx");
+                putPair("application/mac-binhex40", "hqx");
+                putPair("application/mac-compactpro", "cpt");
+                putPair("application/macbinary", "bin");
+                putPair("application/msexcel", "xls");
+                putPair("application/msword", "doc");
+                putPair("application/octet-stream", "pdf");
+                putPair("application/oda", "oda");
+                putPair("application/ogg", "ogg");
+                putPair("application/pdf", "pdf");
+                putPair("application/pgp", "pgp");
+                putPair("application/php", "php");
+                putPair("application/pkcs-crl", "crl");
+                putPair("application/pkcs10", "p10");
+                putPair("application/pkcs7-mime", "p7c");
+                putPair("application/pkcs7-signature", "p7s");
+                putPair("application/pkix-cert", "crt");
+                putPair("application/pkix-crl", "crl");
+                putPair("application/postscript", "ai");
+                putPair("application/powerpoint", "ppt");
+                putPair("application/rar", "rar");
+                putPair("application/s-compressed", "zip");
+                putPair("application/smil", "smil");
+                putPair("application/videolan", "vlc");
+                putPair("application/vnd.google-earth.kml+xml", "kml");
+                putPair("application/vnd.google-earth.kmz", "kmz");
+                putPair("application/vnd.mif", "mif");
+                putPair("application/vnd.mpegurl", "m4u");
+                putPair("application/vnd.ms-excel", "xlsx");
+                putPair("application/vnd.ms-office", "ppt");
+                putPair("application/vnd.ms-powerpoint", "ppt");
+                putPair("application/vnd.msexcel", "csv");
+                putPair("application/vnd.openxmlformats-officedocument.presentationml.presentation", "pptx");
+                putPair("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "xlsx");
+                putPair("application/vnd.openxmlformats-officedocument.wordprocessingml.document", "docx");
+                putPair("application/wbxml", "wbxml");
+                putPair("application/wmlc", "wmlc");
+                putPair("application/x-binary", "bin");
+                putPair("application/x-binhex40", "hqx");
+                putPair("application/x-bmp", "bmp");
+                putPair("application/x-cdr", "cdr");
+                putPair("application/x-compress", "z");
+                putPair("application/x-compressed", "7zip");
+                putPair("application/x-coreldraw", "cdr");
+                putPair("application/x-director", "dcr");
+                putPair("application/x-dos_ms_excel", "xls");
+                putPair("application/x-dvi", "dvi");
+                putPair("application/x-excel", "xls");
+                putPair("application/x-gtar", "gtar");
+                putPair("application/x-gzip", "gzip");
+                putPair("application/x-gzip-compressed", "tgz");
+                putPair("application/x-httpd-php", "php");
+                putPair("application/x-httpd-php-source", "php");
+                putPair("application/x-jar", "jar");
+                putPair("application/x-java-application", "jar");
+                putPair("application/x-javascript", "js");
+                putPair("application/x-mac-binhex40", "hqx");
+                putPair("application/x-macbinary", "bin");
+                putPair("application/x-ms-excel", "xls");
+                putPair("application/x-msdownload", "exe");
+                putPair("application/x-msexcel", "xls");
+                putPair("application/x-pem-file", "pem");
+                putPair("application/x-photoshop", "psd");
+                putPair("application/x-php", "php");
+                putPair("application/x-pkcs10", "p10");
+                putPair("application/x-pkcs12", "p12");
+                putPair("application/x-pkcs7", "rsa");
+                putPair("application/x-pkcs7-certreqresp", "p7r");
+                putPair("application/x-pkcs7-mime", "p7c");
+                putPair("application/x-pkcs7-signature", "p7a");
+                putPair("application/x-rar", "rar");
+                putPair("application/x-rar-compressed", "rar");
+                putPair("application/x-shockwave-flash", "swf");
+                putPair("application/x-stuffit", "sit");
+                putPair("application/x-tar", "tar");
+                putPair("application/x-troff-msvideo", "avi");
+                putPair("application/x-win-bitmap", "bmp");
+                putPair("application/x-x509-ca-cert", "crt");
+                putPair("application/x-x509-user-cert", "pem");
+                putPair("application/x-xls", "xls");
+                putPair("application/x-zip", "zip");
+                putPair("application/x-zip-compressed", "zip");
+                putPair("application/xhtml+xml", "xhtml");
+                putPair("application/xls", "xls");
+                putPair("application/xml", "xml");
+                putPair("application/xspf+xml", "xspf");
+                putPair("application/zip", "zip");
+                putPair("audio/ac3", "ac3");
+                putPair("audio/aiff", "aif");
+                putPair("audio/midi", "mid");
+                putPair("audio/mp3", "mp3");
+                putPair("audio/mp4", "m4a");
+                putPair("audio/mpeg", "mp3");
+                putPair("audio/mpeg3", "mp3");
+                putPair("audio/mpg", "mp3");
+                putPair("audio/ogg", "ogg");
+                putPair("audio/wav", "wav");
+                putPair("audio/wave", "wav");
+                putPair("audio/x-acc", "aac");
+                putPair("audio/x-aiff", "aif");
+                putPair("audio/x-au", "au");
+                putPair("audio/x-flac", "flac");
+                putPair("audio/x-m4a", "m4a");
+                putPair("audio/x-ms-wma", "wma");
+                putPair("audio/x-pn-realaudio", "ram");
+                putPair("audio/x-pn-realaudio-plugin", "rpm");
+                putPair("audio/x-realaudio", "ra");
+                putPair("audio/x-wav", "wav");
+                putPair("font/otf", "otf");
+                putPair("font/ttf", "ttf");
+                putPair("font/woff", "woff");
+                putPair("font/woff2", "woff2");
+                putPair("image/bmp", "bmp");
+                putPair("image/cdr", "cdr");
+                putPair("image/gif", "gif");
+                putPair("image/jp2", "jp2");
+                putPair("image/jpeg", "jpeg");
+                putPair("image/jpm", "jp2");
+                putPair("image/jpx", "jp2");
+                putPair("image/ms-bmp", "bmp");
+                putPair("image/pjpeg", "jpeg");
+                putPair("image/png", "png");
+                putPair("image/svg+xml", "svg");
+                putPair("image/tiff", "tiff");
+                putPair("image/vnd.adobe.photoshop", "psd");
+                putPair("image/vnd.microsoft.icon", "ico");
+                putPair("image/webp", "webp");
+                putPair("image/x-bitmap", "bmp");
+                putPair("image/x-bmp", "bmp");
+                putPair("image/x-cdr", "cdr");
+                putPair("image/x-ico", "ico");
+                putPair("image/x-icon", "ico");
+                putPair("image/x-ms-bmp", "bmp");
+                putPair("image/x-png", "png");
+                putPair("image/x-win-bitmap", "bmp");
+                putPair("image/x-windows-bmp", "bmp");
+                putPair("image/x-xbitmap", "bmp");
+                putPair("message/rfc822", "eml");
+                putPair("multipart/x-zip", "zip");
+                putPair("text/calendar", "ics");
+                putPair("text/comma-separated-values", "csv");
+                putPair("text/css", "css");
+                putPair("text/html", "html");
+                putPair("text/json", "json");
+                putPair("text/php", "php");
+                putPair("text/plain", "txt");
+                putPair("text/richtext", "rtx");
+                putPair("text/rtf", "rtf");
+                putPair("text/srt", "srt");
+                putPair("text/vtt", "vtt");
+                putPair("text/x-comma-separated-values", "csv");
+                putPair("text/x-log", "log");
+                putPair("text/x-php", "php");
+                putPair("text/x-scriptzsh", "zsh");
+                putPair("text/x-vcard", "vcf");
+                putPair("text/xml", "xml");
+                putPair("text/xsl", "xsl");
+                putPair("video/3gp", "3gp");
+                putPair("video/3gpp", "3gp");
+                putPair("video/3gpp2", "3g2");
+                putPair("video/avi", "avi");
+                putPair("video/mj2", "jp2");
+                putPair("video/mp4", "mp4");
+                putPair("video/mpeg", "mpeg");
+                putPair("video/msvideo", "avi");
+                putPair("video/ogg", "ogg");
+                putPair("video/quicktime", "mov");
+                putPair("video/vnd.rn-realvideo", "rv");
+                putPair("video/webm", "webm");
+                putPair("video/x-f4v", "f4v");
+                putPair("video/x-flv", "flv");
+                putPair("video/x-ms-asf", "wmv");
+                putPair("video/x-ms-wmv", "wmv");
+                putPair("video/x-msvideo", "avi");
+                putPair("video/x-sgi-movie", "movie");
+                putPair("zz-application/zz-winassoc-cdr", "cdr");
+            }
+        };
+    }
+
+    public static String getExtension(String contentType) throws Exception {
+        if (mimeTypeMapping.containsKey(contentType)){
+            return "." + mimeTypeMapping.get(contentType);
+        } else {
+            throw new Exception("Forbidden content type");
+        }
+    }
+}
