@@ -1,0 +1,13 @@
+version: '3.8'
+services:
+    web:
+      build:
+        context: .
+        dockerfile: Dockerfile
+      image: qq/qq:latest
+      container_name: web-container
+      restart: always
+      ports:
+        - "8081:8080"
+
+

@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 import org.springframework.core.io.Resource;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Map;
@@ -44,23 +46,44 @@ public class MainController {
 
 
 
-    @PostMapping("/main")
-    public String addFile(FileUpload fileUpload, User user, Map<String, Object> model, @RequestParam("file") MultipartFile file ) throws Exception{
-        try{
-            if( user.getUsername() == null){
-                model.put("message", "you need to be authorized to upload files");
+//    @PostMapping("/main")
+//    public String addFile(FileUpload fileUpload, User user, Map<String, Object> model, @RequestParam("file") MultipartFile file ) throws Exception{
+//        try{
+//            if( user == null){
+//                model.put("message", "you need to be authorized to upload files");
+//                return "main";
+//            }
+//            fileUploadingService.storeFile(file, uploadPath);
+//            storageService.store(file);
+//            fileUpload.setName(file.getOriginalFilename());
+//            fileUpload.setAuthor(user);
+//            //user.addToUpFiles(fileUpload);model.put("message", MvcUriComponentsBuilder. )
+//            model.put("message", fileUpload.getName());
+//        } catch ( Exception e){
+//            model.put("message", " File uploading error");
+//        };
+//        return "main";
+//    }
+
+    @PostMapping("/qqq")
+    public String handleFileUpload(@RequestParam("file") MultipartFile file,
+                                   RedirectAttributes redirectAttributes, FileUpload fileUpload, User user, Map<String, Object> model) throws Exception {
+        if( user == null){
+               model.put("message", "you need to be authorized to upload files");
                 return "main";
             }
-            fileUploadingService.storeFile(file, uploadPath);
-            fileUpload.setName(file.getOriginalFilename());
-            fileUpload.setAuthor(user);
-           //user.addToUpFiles(fileUpload);model.put("message", MvcUriComponentsBuilder. )
-            model.put("message", fileUpload.getName());
-        } catch ( Exception e){
-            model.put("message", " File uploading error");
-        };
-        return "main";
+
+        storageService.store(file);
+        fileUploadingService.storeFile(file, uploadPath);
+                    fileUpload.setName(file.getOriginalFilename());
+           fileUpload.setAuthor(user);
+        redirectAttributes.addFlashAttribute("message",
+                "You successfully uploaded " + file.getOriginalFilename() + "!");
+
+        return "redirect:/main";
     }
+
+
 
     @GetMapping("/files/{filename:.+}")
     @ResponseBody
@@ -70,8 +93,10 @@ public class MainController {
         return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,
                 "attachment; filename=\"" + file.getFilename() + "\"").body(file);
     }
+
+
     @GetMapping("/main")
-    public String listUploadedFiles(Model model) throws IOException {
+    public String UploadFilesToPage(Model model) throws IOException {
 
         model.addAttribute("files", storageService.loadAll().map(
                         path -> MvcUriComponentsBuilder.fromMethodName(MainController.class,
@@ -80,8 +105,6 @@ public class MainController {
 
         return "uploadForm";
     }
-
-
 
 
 }
